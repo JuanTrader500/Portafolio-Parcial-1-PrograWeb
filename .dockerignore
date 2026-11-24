@@ -1,0 +1,8 @@
+.git
+.gitignore
+.github
+README.md
+fotos
+node_modules
+*.log
+/index.html

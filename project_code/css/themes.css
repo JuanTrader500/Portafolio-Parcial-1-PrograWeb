@@ -1,0 +1,154 @@
+/* ==========================================================================
+   themes.css — Matrix, Bloomberg Amber y Dracula
+   ========================================================================== */
+
+html[data-theme="matrix"] {
+    color-scheme: dark;
+    --bg: #030705;
+    --bg-elev: #061009;
+    --panel: #07130b;
+    --panel-2: #0a1a10;
+    --panel-3: #0d2216;
+    --text: #d3ffe0;
+    --text-strong: #f0fff5;
+    --text-dim: #8ab99a;
+    --text-faint: #669373;
+    --accent: #43ff8b;
+    --accent-2: #b8ff5c;
+    --accent-3: #36d6ff;
+    --accent-soft: rgba(67, 255, 139, 0.1);
+    --accent-soft-2: rgba(67, 255, 139, 0.18);
+    --border: rgba(126, 255, 174, 0.16);
+    --border-strong: rgba(126, 255, 174, 0.32);
+    --danger: #ff6b6b;
+    --warning: #ffd166;
+    --info: #65e7ff;
+    --selection: rgba(67, 255, 139, 0.25);
+    --shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
+    --glow: 0 0 24px rgba(67, 255, 139, 0.12);
+    --glow-a: rgba(67, 255, 139, 0.075);
+    --glow-b: rgba(54, 214, 255, 0.045);
+    --grid: rgba(67, 255, 139, 0.045);
+    --scanline: rgba(0, 0, 0, 0.22);
+    --photo-filter: saturate(0.92) contrast(1.05);
+}
+
+html[data-theme="amber"] {
+    color-scheme: dark;
+    --bg: #0a0702;
+    --bg-elev: #100b03;
+    --panel: #120d04;
+    --panel-2: #171006;
+    --panel-3: #1e1508;
+    --text: #ffe2b0;
+    --text-strong: #fff4dc;
+    --text-dim: #bd9255;
+    --text-faint: #9e7b49;
+    --accent: #ffb000;
+    --accent-2: #ffd166;
+    --accent-3: #5bd6ff;
+    --accent-soft: rgba(255, 176, 0, 0.1);
+    --accent-soft-2: rgba(255, 176, 0, 0.18);
+    --border: rgba(255, 190, 70, 0.16);
+    --border-strong: rgba(255, 190, 70, 0.34);
+    --danger: #ff5c5c;
+    --warning: #ffe08a;
+    --info: #5bd6ff;
+    --selection: rgba(255, 176, 0, 0.26);
+    --shadow: 0 30px 90px rgba(0, 0, 0, 0.62);
+    --glow: 0 0 24px rgba(255, 176, 0, 0.13);
+    --glow-a: rgba(255, 176, 0, 0.06);
+    --glow-b: rgba(91, 214, 255, 0.035);
+    --grid: rgba(255, 176, 0, 0.045);
+    --scanline: rgba(0, 0, 0, 0.24);
+    --photo-filter: sepia(0.18) saturate(0.95) contrast(1.04);
+}
+
+html[data-theme="dracula"] {
+    color-scheme: dark;
+    --bg: #16171f;
+    --bg-elev: #1b1c26;
+    --panel: #1e1f29;
+    --panel-2: #242531;
+    --panel-3: #2b2c3b;
+    --text: #f8f8f2;
+    --text-strong: #ffffff;
+    --text-dim: #b0b1c9;
+    --text-faint: #8b8ca8;
+    --accent: #bd93f9;
+    --accent-2: #ff79c6;
+    --accent-3: #8be9fd;
+    --accent-soft: rgba(189, 147, 249, 0.12);
+    --accent-soft-2: rgba(189, 147, 249, 0.22);
+    --border: rgba(189, 147, 249, 0.18);
+    --border-strong: rgba(189, 147, 249, 0.38);
+    --danger: #ff5555;
+    --warning: #f1fa8c;
+    --info: #8be9fd;
+    --selection: rgba(189, 147, 249, 0.28);
+    --shadow: 0 30px 90px rgba(0, 0, 0, 0.48);
+    --glow: 0 0 24px rgba(189, 147, 249, 0.14);
+    --glow-a: rgba(189, 147, 249, 0.08);
+    --glow-b: rgba(255, 121, 198, 0.045);
+    --grid: rgba(189, 147, 249, 0.045);
+    --scanline: rgba(0, 0, 0, 0.2);
+    --photo-filter: saturate(0.95) contrast(1.03);
+}
+
+/* Efecto CRT opcional ------------------------------------------------------- */
+
+.crt-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 250;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 260ms ease;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 2px,
+        var(--scanline) 2px,
+        var(--scanline) 3px
+    );
+    mix-blend-mode: multiply;
+}
+
+.crt-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 46%,
+        rgba(0, 0, 0, 0.26) 100%
+    );
+}
+
+html[data-crt="on"] .crt-overlay {
+    opacity: 1;
+}
+
+html[data-crt="on"] .terminal-window {
+    box-shadow: var(--shadow), inset 0 0 60px rgba(0, 0, 0, 0.18);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html[data-crt="on"] .crt-overlay {
+        animation: crt-flicker 7s steps(1) infinite;
+    }
+}
+
+@keyframes crt-flicker {
+    0%,
+    96%,
+    100% {
+        filter: none;
+    }
+    97% {
+        filter: brightness(1.04);
+    }
+    98% {
+        filter: brightness(0.98);
+    }
+}

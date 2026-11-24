@@ -1,43 +1,289 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="matrix" data-crt="off">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juan Andrés Muñoz Zapata | Portafolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Juan Andrés Muñoz Zapata — Software, Data &amp; Algo Trading</title>
+    <meta name="description" content="Portafolio terminal de Juan Andrés Muñoz Zapata: desarrollo de software, ciencia de datos, DevOps, QA y trading algorítmico. Explora con comandos o con un clic.">
+    <meta name="author" content="Juan Andrés Muñoz Zapata">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#030705">
+    <meta name="color-scheme" content="dark">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Juan Andrés Muñoz Zapata — Software, Data &amp; Algo Trading">
+    <meta property="og:description" content="Terminal interactiva con mi perfil, proyectos, experiencia, stack y enfoque en trading algorítmico.">
+    <meta property="og:image" content="assets/img/foto_juan-card.jpeg">
+    <meta property="og:locale" content="es_CO">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23030705'/%3E%3Ctext x='32' y='43' font-family='monospace' font-size='28' fill='%2343ff8b' text-anchor='middle'%3E%3E_%3C/text%3E%3C/svg%3E">
+    <link rel="preload" href="assets/fonts/jetbrains-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/terminal.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Juan Andrés Muñoz Zapata",
+        "jobTitle": "Desarrollador de Software · Data Science · QA",
+        "email": "mailto:juanandresm2006@gmail.com",
+        "image": "assets/img/foto_juan-card.jpeg",
+        "sameAs": [
+            "https://github.com/JuanTrader500",
+            "https://www.linkedin.com/in/juan-andres-mu%C3%B1oz-zapata-89b158286"
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Pereira",
+            "addressCountry": "CO"
+        },
+        "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Universidad Tecnológica de Pereira"
+        },
+        "knowsAbout": [
+            "Software Development",
+            "Data Science",
+            "Machine Learning",
+            "DevOps",
+            "Quality Assurance",
+            "Algorithmic Trading",
+            "Python",
+            "Django",
+            "Docker"
+        ]
+    }
+    </script>
 </head>
 <body>
+    <a class="skip-link" href="#terminal-input">Saltar a la terminal</a>
+    <div class="crt-overlay" aria-hidden="true"></div>
 
-    <!-- Navegación Principal -->
-    <header>
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="sobre-mi.html">Sobre Mí</a>
-            <a href="proyectos.html">Proyectos</a>
-            <a href="servicios.html">Servicios</a>
+    <header class="topbar">
+        <div class="statusbar">
+            <div class="status-brand">
+                <span class="brand-mark" aria-hidden="true">&gt;_</span>
+                <span class="brand-text">juan@portfolio</span>
+            </div>
+
+            <div class="status-items" role="group" aria-label="Estado del sistema">
+                <span class="status-item">
+                    <span class="status-dot" aria-hidden="true"></span>
+                    <strong>ONLINE</strong>
+                </span>
+                <span class="status-item hide-sm">
+                    <span class="status-key">ROLE</span>
+                    Data &amp; Algo-Trading Dev
+                </span>
+                <span class="status-item hide-xs">
+                    <span class="status-key">FOCUS</span>
+                    Quant / DevOps
+                </span>
+                <span class="status-item">
+                    <span class="status-key">LOCAL</span>
+                    <time id="stat-clock">--:--:--</time>
+                </span>
+                <span class="status-item hide-sm">
+                    <span class="status-key">UPTIME</span>
+                    <span id="stat-uptime">00:00:00</span>
+                </span>
+            </div>
+
+            <div class="status-actions">
+                <div class="theme-switch" role="group" aria-label="Tema de consola">
+                    <button class="theme-btn" type="button" data-theme-set="matrix" aria-label="Tema Matrix" aria-pressed="true" title="Matrix">
+                        <span class="theme-dot theme-dot--matrix" aria-hidden="true"></span>
+                        <span class="theme-name">matrix</span>
+                    </button>
+                    <button class="theme-btn" type="button" data-theme-set="amber" aria-label="Tema Bloomberg Amber" aria-pressed="false" title="Bloomberg Amber">
+                        <span class="theme-dot theme-dot--amber" aria-hidden="true"></span>
+                        <span class="theme-name">amber</span>
+                    </button>
+                    <button class="theme-btn" type="button" data-theme-set="dracula" aria-label="Tema Dracula" aria-pressed="false" title="Dracula">
+                        <span class="theme-dot theme-dot--dracula" aria-hidden="true"></span>
+                        <span class="theme-name">dracula</span>
+                    </button>
+                </div>
+                <button class="icon-btn" type="button" data-crt-toggle aria-pressed="false" title="Activar efecto CRT">CRT</button>
+            </div>
+        </div>
+
+        <nav class="cmdbar" aria-label="Comandos rápidos">
+            <span class="cmdbar-label">RUN</span>
+            <button class="cmd-chip" type="button" data-command="whoami"><span class="chip-prefix">$</span>whoami</button>
+            <button class="cmd-chip" type="button" data-command="trading"><span class="chip-prefix">$</span>trading</button>
+            <button class="cmd-chip" type="button" data-command="freelance"><span class="chip-prefix">$</span>freelance</button>
+            <button class="cmd-chip" type="button" data-command="experience"><span class="chip-prefix">$</span>experience</button>
+            <button class="cmd-chip" type="button" data-command="projects"><span class="chip-prefix">$</span>projects</button>
+            <button class="cmd-chip" type="button" data-command="education"><span class="chip-prefix">$</span>education</button>
+            <button class="cmd-chip" type="button" data-command="skills"><span class="chip-prefix">$</span>skills</button>
+            <button class="cmd-chip" type="button" data-command="interests"><span class="chip-prefix">$</span>interests</button>
+            <button class="cmd-chip" type="button" data-command="contact"><span class="chip-prefix">$</span>contact</button>
+            <button class="cmd-chip" type="button" data-command="help"><span class="chip-prefix">$</span>help</button>
+            <button class="cmdbar-palette" type="button" data-palette aria-haspopup="dialog" aria-keyshortcuts="Control+K" title="Abrir paleta de comandos (Ctrl+K)">Ctrl K</button>
         </nav>
     </header>
 
-    <main>
-        <!-- Sección Hero -->
-        <section class="hero">
-            <img src="../fotos/foto_juan.jpeg" alt="Juan Andrés Muñoz Zapata" class="profile-img">
-            <h1>Juan Andrés Muñoz Zapata</h1>
-            <p><strong>Desarrollador de Software | Enfoque en Ciencia de Datos</strong></p>
-            <p>"Construyendo soluciones inteligentes en la intersección entre el desarrollo de software, los datos y los mercados financieros."</p>
-            <p>📍 Pereira, Colombia</p>
+    <main id="main" class="layout">
+        <section class="terminal-window" aria-label="Terminal interactiva del portafolio">
+            <div class="window-bar">
+                <div class="window-dots" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="window-title">
+                    juan@portfolio — /home/juan/portfolio
+                    <span class="window-badge">zsh</span>
+                </div>
+                <div class="window-actions">
+                    <button class="icon-btn" type="button" data-palette aria-haspopup="dialog" aria-keyshortcuts="Control+K" title="Paleta de comandos (Ctrl+K)" aria-label="Abrir paleta de comandos">Ctrl K</button>
+                    <button class="icon-btn" type="button" data-clear title="Limpiar terminal (Ctrl+L)" aria-label="Limpiar terminal">CLR</button>
+                </div>
+            </div>
+
+            <div
+                id="terminal-output"
+                class="terminal-output"
+                role="log"
+                aria-live="polite"
+                aria-relevant="additions"
+                aria-label="Salida de la terminal"
+            ></div>
+
+            <form id="terminal-form" class="prompt-row" autocomplete="off" novalidate>
+                <label class="prompt-label" for="terminal-input">
+                    <span class="prompt-user">juan</span><span class="prompt-at">@</span><span class="prompt-host">portfolio</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-dollar">$</span>
+                </label>
+
+                <div class="input-wrap">
+                    <div id="input-mirror" class="input-mirror" aria-hidden="true">
+                        <span id="mirror-content" class="mirror-content"></span>
+                    </div>
+                    <input
+                        id="terminal-input"
+                        class="terminal-input"
+                        type="text"
+                        name="command"
+                        aria-label="Escribe un comando de terminal"
+                        aria-describedby="completion-hint prompt-hints"
+                        aria-controls="terminal-output"
+                        aria-autocomplete="list"
+                        autocomplete="off"
+                        autocapitalize="off"
+                        autocorrect="off"
+                        spellcheck="false"
+                        enterkeyhint="go"
+                    >
+                    <span id="input-placeholder" class="input-placeholder" aria-hidden="true">escribe un comando…</span>
+                </div>
+
+                <button class="run-btn" type="submit" aria-label="Ejecutar comando" title="Ejecutar">↵</button>
+            </form>
+
+            <div id="completion-hint" class="completion-hint" role="status" aria-live="polite"></div>
+
+            <div id="prompt-hints" class="prompt-hints">
+                <span><kbd>Tab</kbd> autocompletar</span>
+                <span><kbd>↑</kbd><kbd>↓</kbd> historial</span>
+                <span><kbd>Ctrl</kbd>+<kbd>K</kbd> paleta</span>
+                <span><kbd>Ctrl</kbd>+<kbd>L</kbd> limpiar</span>
+            </div>
         </section>
+
+        <aside class="sidebar" aria-label="Panel de sistema">
+            <section class="side-panel">
+                <div class="side-head">
+                    <span>SYSTEM</span>
+                    <span class="badge badge--ok">LIVE</span>
+                </div>
+                <dl class="side-kv">
+                    <dt>status</dt><dd>● ONLINE</dd>
+                    <dt>role</dt><dd>Data &amp; Algo-Trading Dev</dd>
+                    <dt>focus</dt><dd>Quant / DevOps</dd>
+                    <dt>current</dt><dd>QA @ Veritran</dd>
+                    <dt>stack</dt><dd>Python · Django · Docker</dd>
+                    <dt>location</dt><dd>Pereira, CO</dd>
+                </dl>
+            </section>
+
+            <section class="side-panel">
+                <div class="side-head">
+                    <span>EQUITY</span>
+                    <span class="badge badge--warn">VISUAL</span>
+                </div>
+                <div class="sparkline" data-sparkline="equity" data-seed="17" data-points="56"></div>
+                <div class="side-note">curva ilustrativa · sin métricas reales</div>
+            </section>
+
+            <section class="side-panel">
+                <div class="side-head">
+                    <span>QUICK ACCESS</span>
+                </div>
+                <div class="side-links">
+                    <a href="mailto:juanandresm2006@gmail.com">email</a>
+                    <a href="https://github.com/JuanTrader500" target="_blank" rel="noopener noreferrer">github</a>
+                    <a href="https://www.linkedin.com/in/juan-andres-mu%C3%B1oz-zapata-89b158286" target="_blank" rel="noopener noreferrer">linkedin</a>
+                    <a href="cv.html" target="_blank" rel="noopener noreferrer">cv imprimible</a>
+                    <button type="button" data-copy="juanandresm2006@gmail.com">copiar email</button>
+                </div>
+                <div class="side-note">Disponible para freelance y colaboraciones.</div>
+            </section>
+        </aside>
     </main>
 
-    <!-- Footer de Contacto -->
-    <footer>
-        <div class="footer-links">
-            <a href="mailto:juanandresm2006@gmail.com">Email</a>
-            <a href="https://github.com/JuanTrader500" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/in/juan-andres-muñoz-zapata-89b158286" target="_blank">LinkedIn</a>
-        </div>
-        <p>&copy; 2026 Juan Andrés Muñoz Zapata</p>
+    <footer class="site-footer">
+        <p><span class="footer-prompt">juan@portfolio:~$</span> echo "gracias por visitar"</p>
+        <p>© <span id="year">2026</span> Juan Andrés Muñoz Zapata · Pereira, Colombia</p>
+        <p>HTML · CSS · JavaScript · SVG · JetBrains Mono (OFL) — sin frameworks, sin tracking.</p>
     </footer>
 
+    <div id="toast-root" class="toast-root" aria-live="polite" aria-atomic="true"></div>
+
+    <div id="palette" class="palette" hidden>
+        <div class="palette-backdrop" data-palette-close></div>
+        <div class="palette-window" role="dialog" aria-modal="true" aria-labelledby="palette-title">
+            <div class="palette-head">
+                <span id="palette-title">COMMAND PALETTE</span>
+                <button type="button" data-palette-close aria-label="Cerrar paleta">ESC</button>
+            </div>
+            <input
+                id="palette-input"
+                type="text"
+                placeholder="Buscar comando…"
+                autocomplete="off"
+                spellcheck="false"
+                role="combobox"
+                aria-expanded="false"
+                aria-label="Buscar comando"
+                aria-labelledby="palette-title"
+                aria-controls="palette-list"
+                aria-autocomplete="list"
+            >
+            <!-- La paleta necesita filtrado y descripciones; un select nativo no cubre el patrón. -->
+            <!-- [html-validate-disable-next prefer-native-element] -->
+            <div id="palette-list" class="palette-list" role="listbox" aria-label="Comandos" aria-labelledby="palette-title"></div>
+            <div class="palette-foot">
+                <kbd>↑</kbd><kbd>↓</kbd> navegar · <kbd>Enter</kbd> ejecutar · <kbd>Esc</kbd> cerrar
+            </div>
+        </div>
+    </div>
+
+    <noscript>
+        <div class="no-js">
+            <strong>Esta terminal necesita JavaScript.</strong>
+            Puedes escribirme a <a href="mailto:juanandresm2006@gmail.com">juanandresm2006@gmail.com</a>,
+            ver mi <a href="https://github.com/JuanTrader500">GitHub</a> o abrir mi
+            <a href="cv.html">CV imprimible</a>.
+        </div>
+    </noscript>
+
+    <script src="js/data.js" defer></script>
+    <script src="js/ui.js" defer></script>
+    <script src="js/visuals.js" defer></script>
+    <script src="js/commands.js" defer></script>
+    <script src="js/terminal.js" defer></script>
+    <script src="js/effects.js" defer></script>
+    <script src="js/app.js" defer></script>
 </body>
 </html>
